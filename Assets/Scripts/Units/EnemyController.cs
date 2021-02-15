@@ -6,20 +6,20 @@ using UnityEngine;
 
 namespace ProjectStavitski.Units
 {
-    [RequireComponent(typeof(EnemyController))]
     public class EnemyController : MonoBehaviour, IComparable
     {
         public Transform playerPos;
-        public Transform wanderTarget;
-        
+        public bool useRaycastToAgro = true;
+
         [HideInInspector] public float distanceToPlayer;
-        
+
         [SerializeField] private float speed = 5;
         [SerializeField] private float agroDistance = 8;
-        
+        [SerializeField] private LayerMask whatIsPlayer;
+
         private EnemyUnit _unit;
         private SingleNodeBlocker _blocker;
-        
+
         private EnemyState _state;
         private bool _shouldMove = false;
         private Vector3 _destination;
@@ -35,12 +35,12 @@ namespace ProjectStavitski.Units
         {
             _blocker.manager = GameManager.Instance.blockManager;
             playerPos = GameManager.Instance.player.transform;
-            
+
             if (playerPos != null)
             {
                 distanceToPlayer = Vector3.Distance(transform.position, playerPos.transform.position);
             }
-            
+
             GameManager.Instance.AddUnitToList(this);
         }
 
@@ -56,10 +56,10 @@ namespace ProjectStavitski.Units
         {
             distanceToPlayer = CalculateTargetDistance();
             SetState();
-            
+
             switch (_state)
             {
-               case EnemyState.Attack:
+                case EnemyState.Attack:
                     Attack();
                     break;
                 case EnemyState.Agro:
@@ -69,14 +69,14 @@ namespace ProjectStavitski.Units
                     break;
             }
         }
-        
+
         private void SetState()
         {
-            if (distanceToPlayer <= 1.2 && !_unit.isPeaceful)
+            if (distanceToPlayer < 1.2f)
             {
                 _state = EnemyState.Attack;
             }
-            else if(distanceToPlayer <= agroDistance && !_unit.isPeaceful)
+            else if (CheckForAgro())
             {
                 _state = EnemyState.Agro;
             }
@@ -85,7 +85,44 @@ namespace ProjectStavitski.Units
                 _state = EnemyState.Wander;
             }
         }
-        
+
+        private bool CheckForAgro()
+        {
+            if (useRaycastToAgro)
+            {
+                Debug.DrawRay(transform.position, transform.up, Color.green,2);
+                Debug.DrawRay(transform.position, -transform.up, Color.green,2);
+                Debug.DrawRay(transform.position, transform.right, Color.green, 2);
+                Debug.DrawRay(transform.position, -transform.right, Color.green, 2);
+                // Up
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, agroDistance, whatIsPlayer);
+                if (hit.transform != null)
+                    return true;
+                // Right
+                hit = Physics2D.Raycast(transform.position, -transform.up, agroDistance, whatIsPlayer);
+                if (hit.transform != null)
+                    return true;
+                // Down
+                hit = Physics2D.Raycast(transform.position, transform.right, agroDistance, whatIsPlayer);
+                if (hit.transform != null)
+                    return true;
+                // Left
+                hit = Physics2D.Raycast(transform.position, -transform.right, agroDistance, whatIsPlayer);
+                if (hit.transform != null)
+                    return true;
+            }
+            else
+            {
+                if (distanceToPlayer < agroDistance)
+                {
+                    return true;
+                }
+            }
+            
+            return false;
+        }
+
+
         private void MoveTo(Transform target)
         {
             _blocker.Unblock();

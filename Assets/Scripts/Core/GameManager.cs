@@ -53,6 +53,7 @@ namespace ProjectStavitski.Core
         private void InitGame()
         {
             _units.Clear();
+            UpdateAStar();
         }
 
         public void UpdateAStar()
