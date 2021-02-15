@@ -126,7 +126,7 @@ namespace ProjectStavitski.Units
         private void MoveTo(Transform target)
         {
             _blocker.Unblock();
-            var path = GameManager.Instance.ConstuctPath(transform, target);
+            var path = GameManager.Instance.ConstructPath(transform, target);
 
             if (path.error || path.vectorPath.Count <= 1)
             {

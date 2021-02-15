@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
 using ProjectStavitski.Units;
@@ -41,6 +42,11 @@ namespace ProjectStavitski.Core
             InitGame();
         }
 
+        private void Start()
+        {
+            UpdateAStar();
+        }
+
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space)) playerTurn = false;
@@ -53,7 +59,6 @@ namespace ProjectStavitski.Core
         private void InitGame()
         {
             _units.Clear();
-            UpdateAStar();
         }
 
         public void UpdateAStar()
@@ -111,7 +116,7 @@ namespace ProjectStavitski.Core
         }
         
         
-        public Path ConstuctPath(Transform position, Transform target)
+        public Path ConstructPath(Transform position, Transform target)
         {
             var path = ABPath.Construct(position.position, target.position, null);
             _traversalProvider = new BlockManager.TraversalProvider(blockManager, BlockManager.BlockMode.OnlySelector, _obstacles);
