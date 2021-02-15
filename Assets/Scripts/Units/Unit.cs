@@ -1,6 +1,4 @@
 ﻿using ProjectStavitski.Combat;
-using ProjectStavitski.Core;
-using ProjectStavitski.Player;
 using UnityEngine;
 
 namespace ProjectStavitski.Units
@@ -31,7 +29,6 @@ namespace ProjectStavitski.Units
 
         protected virtual void Die()
         {
-            GameManager.Instance.player.GetComponent<PlayerUnit>().AddXP(xpForKill);
             Destroy(gameObject);
         }
 

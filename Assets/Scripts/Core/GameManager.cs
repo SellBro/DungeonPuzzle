@@ -97,11 +97,6 @@ namespace ProjectStavitski.Core
             _unitsMoving = true;
             yield return new WaitForSeconds(turnDelay);
             
-            if (_units.Count == 0)
-            {
-                yield return new WaitForSeconds(turnDelay);
-            }
-            
             // Priority queue based on distance to player
             _units.Sort();
             

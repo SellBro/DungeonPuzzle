@@ -10,10 +10,8 @@ namespace ProjectStavitski.Player
     public class PlayerMovementController : MonoBehaviour
     {
         [SerializeField] private float speed = 10;
-        [SerializeField] private float agroTriggerRange = 10;
         [SerializeField] private LayerMask whatIsBlocked;
         [SerializeField] private LayerMask whatIsCollision;
-        [SerializeField] private LayerMask whatIsEnemy;
         
         private bool _isFacingRight = true;
         private Unit _unit;
@@ -91,41 +89,17 @@ namespace ProjectStavitski.Player
 
             if (hitEnemy.transform == null) return false;
 
-            if (CheckForChests(hitEnemy) || hitEnemy.transform.CompareTag("Obstacle")) return true;
+            if (hitEnemy.transform.CompareTag("Obstacle")) return true;
 
             IDamageable enemy = hitEnemy.transform.gameObject.GetComponent<IDamageable>();
             Attack(enemy);
             return true;
         }
 
-        private bool CheckForChests(RaycastHit2D hit)
-        {
-            if (hit.transform.CompareTag("Chest"))
-            {
-                // hit.transform.gameObject.GetComponent<Chest>().ShowUI();
-                return true;
-            }
-
-            return false;
-        }
-
         private void Attack(IDamageable enemy)
         {
             enemy.TakeDamage(_unit.GetDamage());
-            AgroUnits();
             GameManager.Instance.playerTurn = false;
-        }
-
-        private void AgroUnits()
-        {
-            Collider2D[] units = Physics2D.OverlapBoxAll(transform.position, new Vector2(agroTriggerRange,agroTriggerRange), 0, whatIsEnemy);
-
-            Debug.Log(units.Length);
-            
-            foreach (var unit in units)
-            {
-                unit.GetComponent<EnemyUnit>().isPeaceful = false;
-            }
         }
 
         private IEnumerator SmoothMovement(Vector3 destination, Vector3 tr)

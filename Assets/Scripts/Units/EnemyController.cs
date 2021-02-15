@@ -25,6 +25,8 @@ namespace ProjectStavitski.Units
         private Vector3 _destination;
         private Vector3 _position;
 
+        private bool followPlayer = false;
+
         private void Awake()
         {
             _unit = GetComponent<EnemyUnit>();
@@ -76,7 +78,7 @@ namespace ProjectStavitski.Units
             {
                 _state = EnemyState.Attack;
             }
-            else if (CheckForAgro())
+            else if (CheckForAgro() || followPlayer)
             {
                 _state = EnemyState.Agro;
             }
@@ -97,19 +99,32 @@ namespace ProjectStavitski.Units
                 // Up
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, agroDistance, whatIsPlayer);
                 if (hit.transform != null)
+                {
+                    followPlayer = true;
                     return true;
+                }
+                    
                 // Right
                 hit = Physics2D.Raycast(transform.position, -transform.up, agroDistance, whatIsPlayer);
                 if (hit.transform != null)
-                    return true;
+                { 
+                    followPlayer = true;
+                    return true; 
+                }
                 // Down
                 hit = Physics2D.Raycast(transform.position, transform.right, agroDistance, whatIsPlayer);
-                if (hit.transform != null)
-                    return true;
+                if (hit.transform != null) 
+                { 
+                    followPlayer = true;
+                    return true; 
+                }
                 // Left
                 hit = Physics2D.Raycast(transform.position, -transform.right, agroDistance, whatIsPlayer);
-                if (hit.transform != null)
-                    return true;
+                if (hit.transform != null) 
+                {
+                    followPlayer = true;
+                    return true; 
+                }
             }
             else
             {

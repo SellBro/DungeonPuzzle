@@ -5,8 +5,6 @@ namespace ProjectStavitski.Units
 {
     public class EnemyUnit : Unit
     {
-        public bool isPeaceful = false;
-
         public static Action<int> EnemyDie;
         
         private EnemyController _controller;
