@@ -218,9 +218,16 @@
           <e p="Core" t="Include">
             <e p="GameManager.cs" t="Include" />
           </e>
+          <e p="Items" t="Include">
+            <e p="ItemConfig.cs" t="Include" />
+            <e p="ItemPickup.cs" t="Include" />
+          </e>
           <e p="Player" t="Include">
             <e p="PlayerMovementController.cs" t="Include" />
             <e p="PlayerUnit.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="PlayerInvontory.cs" t="Include" />
           </e>
           <e p="Units" t="Include">
             <e p="EnemyController.cs" t="Include" />

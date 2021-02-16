@@ -9,9 +9,6 @@ namespace ProjectStavitski.Core
 {
     public class GameManager : MonoBehaviour
     {
-        [Header("Game Manager Settings")]
-        [SerializeField] private GameObject cam;
-        
         [Header("Managing Components")]
         public static GameManager Instance = null;
         public BlockManager blockManager;
@@ -63,9 +60,6 @@ namespace ProjectStavitski.Core
 
         public void UpdateAStar()
         {
-            // Create A*
-            AstarPath.active.Scan();
-            
             // Block Nodes under Units
             foreach (var unit in _units)
             {

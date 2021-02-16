@@ -2,8 +2,10 @@
 using Pathfinding;
 using ProjectStavitski.Combat;
 using ProjectStavitski.Core;
+using ProjectStavitski.Items;
 using ProjectStavitski.Units;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ProjectStavitski.Player 
 {
@@ -12,10 +14,13 @@ namespace ProjectStavitski.Player
         [SerializeField] private float speed = 10;
         [SerializeField] private LayerMask whatIsBlocked;
         [SerializeField] private LayerMask whatIsCollision;
+
+        [SerializeField] private Image inventoryImage;
         
         private bool _isFacingRight = true;
         private Unit _unit;
         private SingleNodeBlocker _blocker;
+        private ItemConfig currentItem;
 
         private void Awake()
         {
@@ -100,6 +105,12 @@ namespace ProjectStavitski.Player
         {
             enemy.TakeDamage(_unit.GetDamage());
             GameManager.Instance.playerTurn = false;
+        }
+
+        public void EquipItem(ItemConfig item)
+        {
+            currentItem.EquipNewItem(transform, inventoryImage, currentItem);
+            currentItem = item;
         }
 
         private IEnumerator SmoothMovement(Vector3 destination, Vector3 tr)

@@ -20,10 +20,5 @@ namespace ProjectStavitski.Units
             _controller.UnblockGridNode();
             Destroy(gameObject);
         }
-
-        private void OnDisable()
-        {
-            EnemyDie?.Invoke(xpForKill);
-        }
     }
 }
