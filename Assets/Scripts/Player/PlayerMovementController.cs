@@ -5,6 +5,7 @@ using ProjectStavitski.Core;
 using ProjectStavitski.Items;
 using ProjectStavitski.Units;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 namespace ProjectStavitski.Player 
@@ -94,6 +95,16 @@ namespace ProjectStavitski.Player
             if (hitEnemy.transform == null) return false;
 
             if (hitEnemy.transform.CompareTag("Obstacle")) return true;
+
+            if (hitEnemy.transform.CompareTag("Tree") && currentItem.canCutTrees)
+            {
+                Destroy(hitEnemy.transform.gameObject);
+                return false;
+            }
+            else if (hitEnemy.transform.CompareTag("Tree") && !currentItem.canCutTrees)
+            {
+                return true;
+            }
 
             IDamageable enemy = hitEnemy.transform.gameObject.GetComponent<IDamageable>();
             Attack(enemy);

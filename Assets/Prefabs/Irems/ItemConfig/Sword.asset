@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93866d754187c354ca2cce677968d247, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  damage: 0
+  damage: 1
   armour: 0
   canCutTrees: 0
   canBreakWalls: 0
-  itemGameObject: {fileID: 0}
-  itemSprite: {fileID: 0}
+  itemGameObject: {fileID: 1980739159095740465, guid: 90fd957d87dd73647a0aab2e346e1aa9,
+    type: 3}
+  itemSprite: {fileID: 3702322210816315233, guid: ee95ed01d9c02654291d3269618dc6b4,
+    type: 3}

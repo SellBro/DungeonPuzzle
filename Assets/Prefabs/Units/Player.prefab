@@ -182,7 +182,7 @@ MonoBehaviour:
     m_Bits: 256
   whatIsCollision:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 3328
   currentItem: {fileID: 0}
   inventoryImage: {fileID: 0}
 --- !u!114 &5322698234429905801
@@ -199,4 +199,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   damage: 20
-  xpForKill: 20

@@ -8,7 +8,6 @@ namespace ProjectStavitski.Units
         [Header("Unit Settings")]
         [SerializeField] protected int maxHealth;
         [SerializeField] protected int damage;
-        [SerializeField] protected int xpForKill = 20;
 
         protected float _health;
 

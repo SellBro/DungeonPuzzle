@@ -15,7 +15,7 @@ namespace ProjectStavitski.Units
 
         [SerializeField] private float speed = 5;
         [SerializeField] private float agroDistance = 8;
-        [SerializeField] private LayerMask whatIsPlayer;
+        [SerializeField] private LayerMask whatIsCollision;
 
         private EnemyUnit _unit;
         private SingleNodeBlocker _blocker;
@@ -97,30 +97,30 @@ namespace ProjectStavitski.Units
                 Debug.DrawRay(transform.position, transform.right, Color.green, 2);
                 Debug.DrawRay(transform.position, -transform.right, Color.green, 2);
                 // Up
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, agroDistance, whatIsPlayer);
-                if (hit.transform != null)
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, agroDistance, whatIsCollision);
+                if (hit.transform != null && hit.transform.CompareTag("Player"))
                 {
                     followPlayer = true;
                     return true;
                 }
                     
-                // Right
-                hit = Physics2D.Raycast(transform.position, -transform.up, agroDistance, whatIsPlayer);
-                if (hit.transform != null)
+                // Down 
+                hit = Physics2D.Raycast(transform.position, -transform.up, agroDistance, whatIsCollision);
+                if (hit.transform != null && hit.transform.CompareTag("Player"))
                 { 
                     followPlayer = true;
                     return true; 
                 }
-                // Down
-                hit = Physics2D.Raycast(transform.position, transform.right, agroDistance, whatIsPlayer);
-                if (hit.transform != null) 
+                // Right 
+                hit = Physics2D.Raycast(transform.position, transform.right, agroDistance, whatIsCollision);
+                if (hit.transform != null && hit.transform.CompareTag("Player")) 
                 { 
                     followPlayer = true;
                     return true; 
                 }
                 // Left
-                hit = Physics2D.Raycast(transform.position, -transform.right, agroDistance, whatIsPlayer);
-                if (hit.transform != null) 
+                hit = Physics2D.Raycast(transform.position, -transform.right, agroDistance, whatIsCollision);
+                if (hit.transform != null && hit.transform.CompareTag("Player")) 
                 {
                     followPlayer = true;
                     return true; 
