@@ -17,16 +17,16 @@ namespace ProjectStavitski.Items
       [SerializeField] private Sprite itemSprite = null; 
       
 
-      public void EquipNewItem(Transform pos,Image image, ItemConfig oldItem)
-      {
-         DropOldItem(pos, oldItem);
-
+      public void EquipNewItem(Image image)
+      { 
+         itemSprite = itemGameObject.GetComponent<SpriteRenderer>().sprite;
          image.sprite = itemSprite;
       }
 
-      private void DropOldItem(Transform pos, ItemConfig oldItem)
+      public void DropThisItem(Vector3 pos)
       {
-         Instantiate(oldItem.itemGameObject, pos);
+         GameObject item = Instantiate(itemGameObject, pos, Quaternion.identity);
+         item.GetComponent<BoxCollider2D>().isTrigger = true;
       }
    } 
 }

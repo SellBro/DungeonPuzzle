@@ -14,13 +14,12 @@ namespace ProjectStavitski.Player
         [SerializeField] private float speed = 10;
         [SerializeField] private LayerMask whatIsBlocked;
         [SerializeField] private LayerMask whatIsCollision;
-
+        [SerializeField] private ItemConfig currentItem;
         [SerializeField] private Image inventoryImage;
         
         private bool _isFacingRight = true;
         private Unit _unit;
         private SingleNodeBlocker _blocker;
-        private ItemConfig currentItem;
 
         private void Awake()
         {
@@ -107,10 +106,13 @@ namespace ProjectStavitski.Player
             GameManager.Instance.playerTurn = false;
         }
 
-        public void EquipItem(ItemConfig item)
+        public void EquipItem(ItemConfig item, Vector3 pos)
         {
-            currentItem.EquipNewItem(transform, inventoryImage, currentItem);
+            if(currentItem != null)
+                currentItem.DropThisItem(pos);
+            
             currentItem = item;
+            currentItem.EquipNewItem(inventoryImage);
         }
 
         private IEnumerator SmoothMovement(Vector3 destination, Vector3 tr)
