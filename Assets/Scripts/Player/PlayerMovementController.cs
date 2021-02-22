@@ -114,20 +114,22 @@ namespace ProjectStavitski.Player
                 { 
                     return true;
                 }
+                
+                IDamageable enemy = hitEnemy.transform.gameObject.GetComponent<IDamageable>();
+                Attack(enemy);
+                return true;
             }
-            else
+            else if(currentItem == null)
             {
                 return true;
             }
-
-            IDamageable enemy = hitEnemy.transform.gameObject.GetComponent<IDamageable>();
-            Attack(enemy);
-            return true;
+            
+            return false;
         }
 
         private void Attack(IDamageable enemy)
         {
-            enemy.TakeDamage(_unit.GetDamage());
+            enemy.TakeDamage(currentItem.damage);
             GameManager.Instance.playerTurn = false;
         }
 
