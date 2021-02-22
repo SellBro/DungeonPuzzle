@@ -96,12 +96,26 @@ namespace ProjectStavitski.Player
 
             if (hitEnemy.transform.CompareTag("Obstacle")) return true;
 
-            if (hitEnemy.transform.CompareTag("Tree") && currentItem.canCutTrees)
+            if (currentItem != null)
             {
-                Destroy(hitEnemy.transform.gameObject);
-                return false;
+                if (hitEnemy.transform.CompareTag("Tree") && currentItem.canCutTrees)
+                { Destroy(hitEnemy.transform.gameObject); 
+                    return false;
+                }
+                else if (hitEnemy.transform.CompareTag("Tree") && !currentItem.canCutTrees)
+                { 
+                    return true;
+                }
+                else if (hitEnemy.transform.CompareTag("Wall") && currentItem.canBreakWalls)
+                { 
+                    Destroy(hitEnemy.transform.gameObject); return false;
+                }
+                else if (hitEnemy.transform.CompareTag("Wall") && !currentItem.canBreakWalls)
+                { 
+                    return true;
+                }
             }
-            else if (hitEnemy.transform.CompareTag("Tree") && !currentItem.canCutTrees)
+            else
             {
                 return true;
             }
