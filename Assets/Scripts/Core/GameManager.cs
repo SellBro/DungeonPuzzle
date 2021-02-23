@@ -105,9 +105,9 @@ namespace ProjectStavitski.Core
         }
         
         
-        public Path ConstructPath(Transform position, Transform target)
+        public Path ConstructPath(Vector3 position, Vector3 target)
         {
-            var path = ABPath.Construct(position.position, target.position, null);
+            var path = ABPath.Construct(position, target, null);
             _traversalProvider = new BlockManager.TraversalProvider(blockManager, BlockManager.BlockMode.OnlySelector, _obstacles);
             
             // Make the path use a specific traversal provider

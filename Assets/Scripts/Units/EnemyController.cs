@@ -3,6 +3,7 @@ using System.Collections;
 using Pathfinding;
 using ProjectStavitski.Core;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace ProjectStavitski.Units
 {
@@ -56,7 +57,7 @@ namespace ProjectStavitski.Units
 
         public void Act()
         {
-            distanceToPlayer = CalculateTargetDistance();
+            distanceToPlayer = CalculateTargetDistance(transform.position);
             SetState();
 
             switch (_state)
@@ -141,21 +142,59 @@ namespace ProjectStavitski.Units
         private void MoveTo(Transform target)
         {
             _blocker.Unblock();
-            var path = GameManager.Instance.ConstructPath(transform, target);
 
-            if (path.error || path.vectorPath.Count <= 1)
+            Path path = null;
+            Vector3 destination = target.position;
+            
+            while (_unit.GetNumberOfMoves() > 0)
             {
-                _blocker.BlockAt(_position);
+                path = ConstructPath(destination);
+                
+                _unit.DecreaseMove();
+
+                if (path != null)
+                {
+                    float disToPlayer = CalculateTargetDistance(path.vectorPath[_unit.GetTotalMoves() - _unit.GetNumberOfMoves()]);
+                    Debug.Log(disToPlayer);
+                    if (disToPlayer < 0.9f)
+                    {
+                        _unit.IncreaseMove();
+                        break;
+                    }
+                    
+                    destination = transform.position + 2 * (path.vectorPath[1] - transform.position);
+                    Debug.Log(destination);
+                }
+            }
+            
+            
+            if (path == null)
+            {
+                _blocker.BlockAt(_position); 
                 return;
             }
-
-            _position = path.vectorPath[1];
-            _blocker.BlockAt(path.vectorPath[1]); 
-            _destination = path.vectorPath[1];
-
-            StartCoroutine(SmoothMovement(_destination));
             
-            distanceToPlayer = CalculateTargetDistance();
+            _position = path.vectorPath[_unit.GetTotalMoves() - _unit.GetNumberOfMoves()];
+            _blocker.BlockAt(path.vectorPath[_unit.GetTotalMoves() - _unit.GetNumberOfMoves()]); 
+            _destination = path.vectorPath[_unit.GetTotalMoves() - _unit.GetNumberOfMoves()];
+
+            _unit.ResetMoves();
+            
+            StartCoroutine(SmoothMovement(_destination));
+
+            distanceToPlayer = CalculateTargetDistance(transform.position);
+        }
+
+        private Path ConstructPath(Vector3 target)
+        {
+            var path = GameManager.Instance.ConstructPath(transform.position, target);
+            
+            if (path.error || path.vectorPath.Count <= 1) 
+            { 
+                return null;
+            }
+
+            return path;
         }
         
         private void Attack()
@@ -176,9 +215,9 @@ namespace ProjectStavitski.Units
             _shouldMove = false;
         }
 
-        private float CalculateTargetDistance()
+        private float CalculateTargetDistance(Vector3 pos)
         {
-            return Vector3.Distance(transform.position, playerPos.position);
+            return Vector3.Distance(pos, playerPos.position);
         }
 
         public void UnblockGridNode()

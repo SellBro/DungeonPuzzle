@@ -185,9 +185,9 @@ MonoBehaviour:
   distanceToPlayer: 0
   speed: 5
   agroDistance: 8
-  whatIsPlayer:
+  whatIsCollision:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 2816
 --- !u!114 &1124146803768483657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,9 +200,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7636a3bfecfaf4c44b1690287582cce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  damage: 10
-  xpForKill: 20
+  maxHealth: 1
+  damage: 1
 --- !u!114 &1124146803768483660
 MonoBehaviour:
   m_ObjectHideFlags: 0

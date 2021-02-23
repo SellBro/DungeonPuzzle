@@ -32,6 +32,9 @@ namespace ProjectStavitski.Player
         {
             GameManager.Instance.player = gameObject;
             GameManager.Instance.AddObstacleToList(_blocker);
+
+            _blocker.manager = GameManager.Instance.blockManager;
+            GameManager.Instance.AddObstacleToList(_blocker);
         }
 
         private void Update()
