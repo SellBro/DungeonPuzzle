@@ -101,38 +101,43 @@ namespace ProjectStavitski.Player
 
             if (hitEnemy.transform.CompareTag("Obstacle")) return true;
 
+            return CheckForItemInteractions(hitEnemy);
+        }
+
+        private bool CheckForItemInteractions(RaycastHit2D hitEnemy)
+        {
             if (currentItem != defaultItem)
             {
                 if (hitEnemy.transform.CompareTag("Tree") && currentItem.canCutTrees)
                 { Destroy(hitEnemy.transform.gameObject); 
                     return false;
                 }
-                if (hitEnemy.transform.CompareTag("Tree") && !currentItem.canCutTrees)
-                { 
-                    return true;
-                }
+                
                 if (hitEnemy.transform.CompareTag("Wall") && currentItem.canBreakWalls)
                 { 
                     Destroy(hitEnemy.transform.gameObject); return false;
                 }
-                if (hitEnemy.transform.CompareTag("Wall") && !currentItem.canBreakWalls)
-                { 
-                    return true;
-                }
-
+                
                 if (hitEnemy.transform.CompareTag("Door") && currentItem.canOpenDoors)
                 {
                     Destroy(hitEnemy.transform.gameObject);
-
+            
                     currentItem = defaultItem;
                     EquipItem(defaultItem, transform.position);
                     return false;
                 }
-                
+                            
                 IDamageable enemy = hitEnemy.transform.gameObject.GetComponent<IDamageable>();
-                Attack(enemy);
-                return true;
+                if (enemy != null)
+                {
+                    Attack(enemy);
+                    return true;
+                }
+
+                // In case of other collisions
+                if (hitEnemy.transform != null) return true;
             }
+            
             if(currentItem == null)
             {
                 return true;
