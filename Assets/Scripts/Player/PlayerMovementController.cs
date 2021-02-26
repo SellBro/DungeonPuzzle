@@ -18,7 +18,6 @@ namespace ProjectStavitski.Player
         [SerializeField] private ItemConfig defaultItem;
         [SerializeField] private Image inventoryImage;
         
-        private bool _isFacingRight = true;
         private SingleNodeBlocker _blocker;
         private ItemConfig currentItem;
 
@@ -67,11 +66,6 @@ namespace ProjectStavitski.Player
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                if (_isFacingRight)
-                {
-                    transform.localScale = new Vector3(-1, 1, 1);
-                    _isFacingRight = false;
-                }
                 Vector3 destination = new Vector3(transform.position.x - 1, transform.position.y);
                 
                 if (CheckForCollisions(-transform.right)) return;
@@ -80,11 +74,6 @@ namespace ProjectStavitski.Player
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                if (!_isFacingRight)
-                {
-                    transform.localScale = new Vector3(1, 1, 1);
-                    _isFacingRight = true;
-                }
                 Vector3 destination = new Vector3(transform.position.x + 1, transform.position.y);
                 
                 if (CheckForCollisions(transform.right)) return;

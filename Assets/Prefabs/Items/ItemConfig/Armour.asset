@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Armour
   m_EditorClassIdentifier: 
   damage: 0
-  armour: 0
-  shouldBeDropped: 1
+  armour: 6
   canCutTrees: 0
   canBreakWalls: 0
   canOpenDoors: 0
-  itemGameObject: {fileID: 0}
-  itemSprite: {fileID: 0}
+  canBlockHits: 1
+  itemGameObject: {fileID: 5016032604756816268, guid: 13023396e5667cf4a94fcee93bd82924,
+    type: 3}
+  itemSprite: {fileID: 7459598152510608131, guid: ee95ed01d9c02654291d3269618dc6b4,
+    type: 3}
+  currentArmour: 6

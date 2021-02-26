@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   damage: 1
-  armour: 0
+  armour: -1
   canCutTrees: 1
   canBreakWalls: 0
+  canOpenDoors: 0
+  canBlockHits: 0
   itemGameObject: {fileID: 9166418072007644890, guid: 36dbde1e46b9d34438b9e6af5b641547,
     type: 3}
   itemSprite: {fileID: -2770867784679079766, guid: ee95ed01d9c02654291d3269618dc6b4,
     type: 3}
+  currentArmour: -1

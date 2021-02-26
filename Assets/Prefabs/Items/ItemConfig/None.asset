@@ -13,9 +13,12 @@ MonoBehaviour:
   m_Name: None
   m_EditorClassIdentifier: 
   damage: 0
-  armour: 0
+  armour: -1
   canCutTrees: 0
   canBreakWalls: 0
   canOpenDoors: 0
+  canBlockHits: 0
   itemGameObject: {fileID: 0}
-  itemSprite: {fileID: 0}
+  itemSprite: {fileID: -9182011993050726023, guid: ee95ed01d9c02654291d3269618dc6b4,
+    type: 3}
+  currentArmour: -1
