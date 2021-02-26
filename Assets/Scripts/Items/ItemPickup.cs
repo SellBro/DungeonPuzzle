@@ -11,6 +11,11 @@ namespace ProjectStavitski.Items
         [SerializeField] private ItemConfig config = null;
         [SerializeField] private int healthToRestore = 0;
 
+        private void Start()
+        {
+           if(config != null) config.ResetArmour(); 
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
             if (other.gameObject.CompareTag("Player"))

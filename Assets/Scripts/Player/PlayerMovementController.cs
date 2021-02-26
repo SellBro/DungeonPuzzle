@@ -15,16 +15,16 @@ namespace ProjectStavitski.Player
         [SerializeField] private float speed = 10;
         [SerializeField] private LayerMask whatIsBlocked;
         [SerializeField] private LayerMask whatIsCollision;
-        [SerializeField] private ItemConfig currentItem;
+        [SerializeField] private ItemConfig defaultItem;
         [SerializeField] private Image inventoryImage;
         
         private bool _isFacingRight = true;
-        private Unit _unit;
         private SingleNodeBlocker _blocker;
+        private ItemConfig currentItem;
+
 
         private void Awake()
         {
-            _unit = GetComponent<Unit>();
             _blocker = GetComponent<SingleNodeBlocker>();
         }
 
@@ -35,6 +35,8 @@ namespace ProjectStavitski.Player
 
             _blocker.manager = GameManager.Instance.blockManager;
             GameManager.Instance.AddObstacleToList(_blocker);
+
+            currentItem = defaultItem;
         }
 
         private void Update()
@@ -99,30 +101,39 @@ namespace ProjectStavitski.Player
 
             if (hitEnemy.transform.CompareTag("Obstacle")) return true;
 
-            if (currentItem != null)
+            if (currentItem != defaultItem)
             {
                 if (hitEnemy.transform.CompareTag("Tree") && currentItem.canCutTrees)
                 { Destroy(hitEnemy.transform.gameObject); 
                     return false;
                 }
-                else if (hitEnemy.transform.CompareTag("Tree") && !currentItem.canCutTrees)
+                if (hitEnemy.transform.CompareTag("Tree") && !currentItem.canCutTrees)
                 { 
                     return true;
                 }
-                else if (hitEnemy.transform.CompareTag("Wall") && currentItem.canBreakWalls)
+                if (hitEnemy.transform.CompareTag("Wall") && currentItem.canBreakWalls)
                 { 
                     Destroy(hitEnemy.transform.gameObject); return false;
                 }
-                else if (hitEnemy.transform.CompareTag("Wall") && !currentItem.canBreakWalls)
+                if (hitEnemy.transform.CompareTag("Wall") && !currentItem.canBreakWalls)
                 { 
                     return true;
+                }
+
+                if (hitEnemy.transform.CompareTag("Door") && currentItem.canOpenDoors)
+                {
+                    Destroy(hitEnemy.transform.gameObject);
+
+                    currentItem = defaultItem;
+                    EquipItem(defaultItem, transform.position);
+                    return false;
                 }
                 
                 IDamageable enemy = hitEnemy.transform.gameObject.GetComponent<IDamageable>();
                 Attack(enemy);
                 return true;
             }
-            else if(currentItem == null)
+            if(currentItem == null)
             {
                 return true;
             }
@@ -136,13 +147,35 @@ namespace ProjectStavitski.Player
             GameManager.Instance.playerTurn = false;
         }
 
+        
+        /// <summary>
+        /// Equips item and drops current at position
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="pos"></param>
         public void EquipItem(ItemConfig item, Vector3 pos)
         {
-            if(currentItem != null)
+            if(currentItem != defaultItem)
                 currentItem.DropThisItem(pos);
             
             currentItem = item;
             currentItem.EquipNewItem(inventoryImage);
+        }
+
+        public int GetCurrentItemArmour()
+        {
+            return currentItem.GetCurrentArmout();
+        }
+
+        public void DecreaseCurrentItemArmour(int amount)
+        {
+            currentItem.DecreaseArmour(amount);
+            
+            if (currentItem.GetCurrentArmout() <= 0 && currentItem.canBlockHits)
+            {
+                currentItem = defaultItem;
+                EquipItem(currentItem,transform.position); 
+            }
         }
 
         private IEnumerator SmoothMovement(Vector3 destination, Vector3 tr)

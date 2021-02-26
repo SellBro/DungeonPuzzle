@@ -11,15 +11,41 @@ namespace ProjectStavitski.Player
         [SerializeField] private Sprite[] healthSprites;
 
 
+        private PlayerMovementController _playerMovementController;
+
         private int split;
-        
+
+        private void Awake()
+        {
+            _playerMovementController = GetComponent<PlayerMovementController>();
+        }
+
         protected override void Start()
         {
             base.Start();
             split = (int)(_health / healthUI.Length);
         }
 
-        private void Update()
+        public override void TakeDamage(int amount)
+        {
+            if (_playerMovementController.GetCurrentItemArmour() > 0)
+            {
+                _playerMovementController.DecreaseCurrentItemArmour(amount);
+            }
+            else
+            {
+                base.TakeDamage(amount);
+                UpdateHealthBar();
+            }
+        }
+
+        public override void Heal(int amount)
+        {
+            base.Heal(amount);
+            UpdateHealthBar();
+        }
+
+        private void UpdateHealthBar()
         {
             for (int i = 1; i <= healthUI.Length; ++i)
             {
