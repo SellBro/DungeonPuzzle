@@ -3,9 +3,7 @@ using Pathfinding;
 using ProjectStavitski.Combat;
 using ProjectStavitski.Core;
 using ProjectStavitski.Items;
-using ProjectStavitski.Units;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 namespace ProjectStavitski.Player 

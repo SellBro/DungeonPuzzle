@@ -212,11 +212,15 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Audio" t="Include">
+            <e p="VolumeControl.cs" t="Include" />
+          </e>
           <e p="Combat" t="Include">
             <e p="IDamageable.cs" t="Include" />
           </e>
           <e p="Core" t="Include">
             <e p="GameManager.cs" t="Include" />
+            <e p="LevelLoader.cs" t="Include" />
           </e>
           <e p="Items" t="Include">
             <e p="Blocker.cs" t="Include" />
