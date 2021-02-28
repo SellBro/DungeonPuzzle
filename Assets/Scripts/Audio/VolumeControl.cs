@@ -48,6 +48,7 @@ namespace ProjectStavitski.Audio
     enum MixerType
     {
         AUDIO,
-        MUSIC
+        MUSIC,
+        NONE
     }
 }
