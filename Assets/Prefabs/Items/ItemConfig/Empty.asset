@@ -20,6 +20,6 @@ MonoBehaviour:
   canBlockHits: 0
   itemGameObject: {fileID: 787873600789728332, guid: d69191d2cd7ea1c47b41db68b81cdde6,
     type: 3}
-  itemSprite: {fileID: 7304667070453156001, guid: ee95ed01d9c02654291d3269618dc6b4,
+  itemSprite: {fileID: 2938163503808865734, guid: a29d41bf396803a4bbfedd151d052acc,
     type: 3}
   currentArmour: 0

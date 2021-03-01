@@ -149,24 +149,22 @@ namespace ProjectStavitski.Units
             while (_unit.GetNumberOfMoves() > 0)
             {
                 path = ConstructPath(destination);
-                
-                _unit.DecreaseMove();
 
+                _unit.DecreaseMove();
+                
                 if (path != null)
                 {
+                    Debug.Log(_unit.GetTotalMoves() - _unit.GetNumberOfMoves());
+                    Debug.Log(path.vectorPath[_unit.GetTotalMoves() - _unit.GetNumberOfMoves()]);
                     float disToPlayer = CalculateTargetDistance(path.vectorPath[_unit.GetTotalMoves() - _unit.GetNumberOfMoves()]);
-                    Debug.Log(disToPlayer);
-                    if (disToPlayer < 0.9f)
+                    if (disToPlayer < 1.1f)
                     {
-                        _unit.IncreaseMove();
+                        Debug.Log("Player near");
                         break;
                     }
-                    
                     destination = transform.position + 2 * (path.vectorPath[1] - transform.position);
-                    Debug.Log(destination);
                 }
             }
-            
             
             if (path == null)
             {
