@@ -96,7 +96,8 @@ namespace ProjectStavitski.Player
             if (currentItem != defaultItem)
             {
                 if (hitEnemy.transform.CompareTag("Tree") && currentItem.canCutTrees)
-                { Destroy(hitEnemy.transform.gameObject); 
+                { 
+                    Destroy(hitEnemy.transform.gameObject); 
                     return false;
                 }
                 
@@ -125,7 +126,7 @@ namespace ProjectStavitski.Player
                 if (hitEnemy.transform != null) return true;
             }
             
-            if(currentItem == null)
+            if(hitEnemy.transform != null)
             {
                 return true;
             }
