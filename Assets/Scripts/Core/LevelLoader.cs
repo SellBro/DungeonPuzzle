@@ -16,6 +16,11 @@ namespace ProjectStavitski.Core
             SceneManager.LoadScene(index);
         }
 
+        public void RestartLevel()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+
         public void QuitGame()
         {
             Debug.Log("Quitting");
