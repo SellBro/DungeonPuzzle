@@ -178,6 +178,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 334cfba8b5e908247a9301fdd9eac818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitParticle: {fileID: 6621932821641988539, guid: 2fcab017d5f07ce4381cbffed4069305,
+    type: 3}
+  pickupParticle: {fileID: 7846980979063539185, guid: e87119310f3edf54b88ae4326452834b,
+    type: 3}
   speed: 10
   whatIsBlocked:
     serializedVersion: 2

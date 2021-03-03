@@ -10,7 +10,9 @@ namespace ProjectStavitski.Player
         [SerializeField] private Image[] healthUI;
         [SerializeField] private Sprite[] healthSprites;
 
-
+        private AudioSource hitSound;
+        
+        
         private PlayerMovementController _playerMovementController;
 
         private int split;
@@ -18,6 +20,8 @@ namespace ProjectStavitski.Player
         private void Awake()
         {
             _playerMovementController = GetComponent<PlayerMovementController>();
+
+            hitSound = GetComponent<AudioSource>();
         }
 
         protected override void Start()
@@ -28,6 +32,7 @@ namespace ProjectStavitski.Player
 
         public override void TakeDamage(int amount)
         {
+            hitSound.Play();
             if (_playerMovementController.GetCurrentItemArmour() > 0)
             {
                 _playerMovementController.DecreaseCurrentItemArmour(amount);

@@ -10,6 +10,10 @@ namespace ProjectStavitski.Player
 {
     public class PlayerMovementController : MonoBehaviour
     {
+        [Header("Particles")] 
+        [SerializeField] private GameObject hitParticle;
+        [SerializeField] private GameObject pickupParticle;
+        
         [SerializeField] private float speed = 10;
         [SerializeField] private LayerMask whatIsBlocked;
         [SerializeField] private LayerMask whatIsCollision;
@@ -97,12 +101,15 @@ namespace ProjectStavitski.Player
             {
                 if (hitEnemy.transform.CompareTag("Tree") && currentItem.canCutTrees)
                 { 
+                    
+                    Instantiate(hitParticle,hitEnemy.transform.position, Quaternion.identity);
                     Destroy(hitEnemy.transform.gameObject); 
                     return false;
                 }
                 
                 if (hitEnemy.transform.CompareTag("Wall") && currentItem.canBreakWalls)
                 { 
+                    Instantiate(hitParticle,hitEnemy.transform.position, Quaternion.identity);
                     Destroy(hitEnemy.transform.gameObject); return false;
                 }
                 
@@ -118,6 +125,7 @@ namespace ProjectStavitski.Player
                 IDamageable enemy = hitEnemy.transform.gameObject.GetComponent<IDamageable>();
                 if (enemy != null)
                 {
+                    Instantiate(hitParticle, hitEnemy.transform.position, Quaternion.identity);
                     Attack(enemy);
                     return true;
                 }
@@ -148,6 +156,8 @@ namespace ProjectStavitski.Player
         /// <param name="pos"></param>
         public void EquipItem(ItemConfig item, Vector3 pos)
         {
+            Instantiate(pickupParticle,pos,Quaternion.identity);
+            
             if(currentItem != defaultItem)
                 currentItem.DropThisItem(pos);
             

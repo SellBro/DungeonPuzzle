@@ -240,6 +240,10 @@
             <e p="EnemyUnit.cs" t="Include" />
             <e p="Unit.cs" t="Include" />
           </e>
+          <e p="Utility" t="Include">
+            <e p="DestroyAfterAnimation.cs" t="Include" />
+            <e p="MusicController.cs" t="Include" />
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">

@@ -48,7 +48,7 @@ MonoBehaviour:
   blockManager: {fileID: 8930553647837450666}
   playerTurn: 1
   player: {fileID: 0}
-  turnDelay: 0.2
+  turnDelay: 0.4
 --- !u!114 &8930553647837450666
 MonoBehaviour:
   m_ObjectHideFlags: 0
