@@ -1,6 +1,7 @@
 ﻿using System;
 using ProjectStavitski.Units;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace ProjectStavitski.Player
@@ -42,6 +43,11 @@ namespace ProjectStavitski.Player
                 base.TakeDamage(amount);
                 UpdateHealthBar();
             }
+        }
+
+        protected override void Die()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         public override void Heal(int amount)

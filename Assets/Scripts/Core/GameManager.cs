@@ -27,6 +27,7 @@ namespace ProjectStavitski.Core
         
         private BlockManager.TraversalProvider _traversalProvider;
         private bool _unitsMoving;
+        private bool _playerMoving;
 
         private void Awake()
         {
@@ -48,7 +49,7 @@ namespace ProjectStavitski.Core
         {
             if (Input.GetKeyDown(KeyCode.Space)) playerTurn = false;
             
-            if (playerTurn || _unitsMoving) return;
+            if (playerTurn || _unitsMoving || _playerMoving) return;
 
             StartCoroutine(MoveUnits());
         }
@@ -86,10 +87,17 @@ namespace ProjectStavitski.Core
             _units.Remove(unit);
         }
 
+        public bool PlayerMoving
+        {
+            get => _playerMoving;
+            set => _playerMoving = value;
+        }
+
+        public bool UnitsMoving => _unitsMoving;
+
         private IEnumerator MoveUnits()
         {
             _unitsMoving = true;
-            yield return new WaitForSeconds(turnDelay);
             
             // Priority queue based on distance to player
             _units.Sort();
@@ -100,6 +108,8 @@ namespace ProjectStavitski.Core
                 yield return null;
             }
 
+            yield return new WaitForSeconds(turnDelay);
+            
             playerTurn = true;
             _unitsMoving = false;
         }

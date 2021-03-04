@@ -42,7 +42,7 @@ namespace ProjectStavitski.Player
 
         private void Update()
         {
-            if (GameManager.Instance.playerTurn)
+            if (GameManager.Instance.playerTurn && !GameManager.Instance.PlayerMoving && !GameManager.Instance.UnitsMoving)
             {
                 GetInput();
             }
@@ -183,6 +183,8 @@ namespace ProjectStavitski.Player
 
         private IEnumerator SmoothMovement(Vector3 destination, Vector3 tr)
         {
+            GameManager.Instance.PlayerMoving = true;
+            
             RaycastHit2D hitBlock = Physics2D.Raycast(transform.position, tr,1.1f, whatIsBlocked);
             Debug.DrawRay(transform.position, tr, Color.red,3);
             if (hitBlock.transform == null)
@@ -194,6 +196,8 @@ namespace ProjectStavitski.Player
                     yield return new WaitForEndOfFrame();
                 }
             }
+
+            GameManager.Instance.PlayerMoving = false;
         }
     }
 }
