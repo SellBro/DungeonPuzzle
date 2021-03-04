@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93866d754187c354ca2cce677968d247, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 2
   armour: -1
   canCutTrees: 1
   canBreakWalls: 0

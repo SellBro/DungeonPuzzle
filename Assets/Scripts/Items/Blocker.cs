@@ -18,7 +18,6 @@ namespace ProjectStavitski.Items
 
         private void OnDestroy()
         {
-            Debug.Log("Pepe");
             blocker.Unblock();
         }
     }

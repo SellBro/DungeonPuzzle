@@ -36,6 +36,7 @@ namespace ProjectStavitski.Units
 
         private void Start()
         {
+            
             _blocker.manager = GameManager.Instance.blockManager;
             playerPos = GameManager.Instance.player.transform;
 
@@ -43,8 +44,9 @@ namespace ProjectStavitski.Units
             {
                 distanceToPlayer = Vector3.Distance(transform.position, playerPos.transform.position);
             }
-
+            
             GameManager.Instance.AddUnitToList(this);
+            _blocker.BlockAtCurrentPosition();
         }
 
         private void Update()
@@ -69,6 +71,7 @@ namespace ProjectStavitski.Units
                     MoveTo(playerPos);
                     break;
                 case EnemyState.Idle:
+                    _blocker.BlockAtCurrentPosition();
                     break;
             }
         }
@@ -148,18 +151,16 @@ namespace ProjectStavitski.Units
             
             while (_unit.GetNumberOfMoves() > 0)
             {
+                Debug.Log("Const");
                 path = ConstructPath(destination);
 
                 _unit.DecreaseMove();
                 
                 if (path != null)
                 {
-                    Debug.Log(_unit.GetTotalMoves() - _unit.GetNumberOfMoves());
-                    Debug.Log(path.vectorPath[_unit.GetTotalMoves() - _unit.GetNumberOfMoves()]);
                     float disToPlayer = CalculateTargetDistance(path.vectorPath[_unit.GetTotalMoves() - _unit.GetNumberOfMoves()]);
                     if (disToPlayer < 1.1f)
                     {
-                        Debug.Log("Player near");
                         break;
                     }
                     destination = transform.position + 2 * (path.vectorPath[1] - transform.position);
@@ -169,6 +170,7 @@ namespace ProjectStavitski.Units
             if (path == null)
             {
                 _blocker.BlockAt(_position); 
+                _unit.ResetMoves();
                 return;
             }
             

@@ -44,8 +44,8 @@ namespace ProjectStavitski.Units
 
         protected override void Die()
         {
-            GameManager.Instance.RemoveUnitFromList(_controller);
             _controller.UnblockGridNode();
+            GameManager.Instance.RemoveUnitFromList(_controller);
             Destroy(gameObject);
         }
     }
