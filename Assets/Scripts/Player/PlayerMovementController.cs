@@ -27,8 +27,6 @@ namespace ProjectStavitski.Player
         private void Awake()
         {
             _blocker = GetComponent<SingleNodeBlocker>();
-
-            Cursor.visible = false;
         }
 
         private void Start()
@@ -118,6 +116,7 @@ namespace ProjectStavitski.Player
                 if (hitEnemy.transform.CompareTag("Door") && currentItem.canOpenDoors)
                 {
                     Destroy(hitEnemy.transform.gameObject);
+                    AstarPath.active.Scan();
             
                     currentItem = defaultItem;
                     EquipItem(defaultItem, transform.position);

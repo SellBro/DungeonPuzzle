@@ -76,6 +76,11 @@ namespace ProjectStavitski.Core
         {
             _obstacles.Add(obstacle);
         }
+
+        public void RemoveObstacleFromList(SingleNodeBlocker obstacle)
+        {
+            _obstacles.Remove(obstacle);
+        }
         
         public void AddUnitToList(EnemyController unit)
         {

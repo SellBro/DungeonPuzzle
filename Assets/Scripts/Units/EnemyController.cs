@@ -71,7 +71,7 @@ namespace ProjectStavitski.Units
                     MoveTo(playerPos);
                     break;
                 case EnemyState.Idle:
-                    _blocker.BlockAtCurrentPosition();
+                    // _blocker.BlockAtCurrentPosition();
                     break;
             }
         }

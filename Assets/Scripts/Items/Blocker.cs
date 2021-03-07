@@ -19,6 +19,7 @@ namespace ProjectStavitski.Items
         private void OnDestroy()
         {
             blocker.Unblock();
+            Destroy(gameObject);
         }
     }
 }
