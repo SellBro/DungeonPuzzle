@@ -27,6 +27,8 @@ namespace ProjectStavitski.Player
         private void Awake()
         {
             _blocker = GetComponent<SingleNodeBlocker>();
+
+            Cursor.visible = false;
         }
 
         private void Start()

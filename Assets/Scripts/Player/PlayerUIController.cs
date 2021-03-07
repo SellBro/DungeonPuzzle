@@ -13,6 +13,7 @@ namespace ProjectStavitski.Player
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                Cursor.visible = !Cursor.visible;
                 pauseUI.SetActive(!pauseUI.activeSelf);
             }
         }
