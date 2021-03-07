@@ -24,7 +24,8 @@ namespace ProjectStavitski.Core
                 { 
                     PlayerPrefs.SetInt("LevelAt",index);
                 }
-                
+
+                Cursor.visible = true;
                 SceneManager.LoadScene(index);
             }
             
