@@ -1541,6 +1541,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Loader
       objectReference: {fileID: 0}
+    - target: {fileID: 8794548511973376742, guid: c9f01e592b68cfa4086f2e1768e4fa33,
+        type: 3}
+      propertyPath: levelToLoad
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9f01e592b68cfa4086f2e1768e4fa33, type: 3}
 --- !u!4 &1837016493 stripped

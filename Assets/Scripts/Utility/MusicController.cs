@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using ProjectStavitski.Core;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace ProjectStavitski.Utility
 {
     class MusicController : MonoBehaviour
     {
+        [SerializeField] private AudioClip[] clips;
+        
         private static MusicController musicController = null;
 
         private void Start()
         {
+            if (SceneManager.GetActiveScene().buildIndex == 0 && musicController != null)
+            {
+                Destroy(musicController.gameObject);
+                musicController = null;
+            }
+            
             if (musicController == null)
             {
                 musicController = this;
@@ -21,7 +26,11 @@ namespace ProjectStavitski.Utility
                 Destroy(gameObject);
             }
             
-            DontDestroyOnLoad(gameObject);
+            if (SceneManager.GetActiveScene().buildIndex != 0)
+                DontDestroyOnLoad(gameObject);
+
+            GetComponent<AudioSource>().clip = SceneManager.GetActiveScene().buildIndex == 0 ? clips[0] : clips[1];
+            GetComponent<AudioSource>().Play();
         }
     }
 }

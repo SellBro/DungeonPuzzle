@@ -13,7 +13,23 @@ namespace ProjectStavitski.Core
         {
             if(index < 0)
                 Debug.LogError("Level Load Exception");
-            SceneManager.LoadScene(index);
+
+            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+            {
+                SceneManager.LoadScene(0);
+            }
+            else
+            {
+                if (index > PlayerPrefs.GetInt("LevelAt"))
+                { 
+                    PlayerPrefs.SetInt("LevelAt",index);
+                }
+                
+                SceneManager.LoadScene(index);
+            }
+            
+            
+            
         }
 
         public void RestartLevel()
