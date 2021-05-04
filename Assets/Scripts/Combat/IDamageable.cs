@@ -1,4 +1,4 @@
-﻿namespace ProjectStavitski.Combat 
+﻿namespace Combat 
 {
     public interface IDamageable
     {

@@ -1,8 +1,7 @@
-﻿using System;
-using ProjectStavitski.Core;
+﻿using Core;
 using UnityEngine;
 
-namespace ProjectStavitski.Units
+namespace Units
 {
     public class EnemyUnit : Unit
     {

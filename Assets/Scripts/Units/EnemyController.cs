@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
+using Core;
 using Pathfinding;
-using ProjectStavitski.Core;
 using UnityEngine;
-using UnityEngine.AI;
 
-namespace ProjectStavitski.Units
+namespace Units
 {
     public class EnemyController : MonoBehaviour, IComparable
     {

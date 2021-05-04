@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectStavitski.Items
+namespace Items
 {
    [CreateAssetMenu(fileName = "ItemConfig", menuName = "ItemConfig/Make new Weapon", order = 0)]
    public class ItemConfig : ScriptableObject

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ProjectStavitski.Utility 
+namespace Utility 
 {
     public class DestroyAfterAnimation : MonoBehaviour
     {

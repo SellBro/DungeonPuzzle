@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ProjectStavitski.Player
+namespace Player
 {
     public class PlayerUIController : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-﻿using ProjectStavitski.UI;
+﻿using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectStavitski.Core
+namespace Core
 {
     public class LevelSelector : MonoBehaviour
     {

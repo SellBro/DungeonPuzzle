@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Audio;
 
-namespace ProjectStavitski.Audio 
+namespace Audio 
 {
     public class VolumeLoadAdjustment : MonoBehaviour
     {

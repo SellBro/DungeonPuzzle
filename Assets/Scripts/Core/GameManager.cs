@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
-using ProjectStavitski.Units;
+using Units;
 using UnityEngine;
 
-namespace ProjectStavitski.Core 
+namespace Core 
 {
     public class GameManager : MonoBehaviour
     {

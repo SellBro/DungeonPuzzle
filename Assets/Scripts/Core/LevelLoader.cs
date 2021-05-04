@@ -1,9 +1,8 @@
-﻿using System.Diagnostics;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
-namespace ProjectStavitski.Core
+namespace Core
 {
     public class LevelLoader : MonoBehaviour
     {

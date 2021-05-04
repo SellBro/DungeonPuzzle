@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace ProjectStavitski.Utility
+namespace Utility
 {
     class MusicController : MonoBehaviour
     {

@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace ProjectStavitski.UI
+namespace UI
 {
     public class PlayerInvontory : MonoBehaviour
     {

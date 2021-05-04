@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-namespace ProjectStavitski.Audio
+namespace Audio
 {
     public class VolumeControl : MonoBehaviour
     {

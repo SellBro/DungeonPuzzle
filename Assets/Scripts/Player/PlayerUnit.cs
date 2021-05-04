@@ -1,10 +1,9 @@
-﻿using System;
-using ProjectStavitski.Units;
+﻿using Units;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace ProjectStavitski.Player
+namespace Player
 {
     public class PlayerUnit : Unit
     {

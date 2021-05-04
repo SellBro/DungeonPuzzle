@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using ProjectStavitski.Player;
+﻿using Player;
 using UnityEngine;
 
-namespace ProjectStavitski.Items
+namespace Items
 {
     public class ItemPickup : MonoBehaviour
     {

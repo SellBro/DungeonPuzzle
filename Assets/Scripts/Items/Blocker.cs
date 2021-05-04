@@ -1,8 +1,8 @@
-﻿using Pathfinding;
-using ProjectStavitski.Core;
+﻿using Core;
+using Pathfinding;
 using UnityEngine;
 
-namespace ProjectStavitski.Items
+namespace Items
 {
     public class Blocker : MonoBehaviour
     {

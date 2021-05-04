@@ -1,12 +1,12 @@
 ﻿using System.Collections;
+using Combat;
+using Core;
+using Items;
 using Pathfinding;
-using ProjectStavitski.Combat;
-using ProjectStavitski.Core;
-using ProjectStavitski.Items;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectStavitski.Player 
+namespace Player 
 {
     public class PlayerMovementController : MonoBehaviour
     {

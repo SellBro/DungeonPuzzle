@@ -1,7 +1,7 @@
-﻿using ProjectStavitski.Combat;
+﻿using Combat;
 using UnityEngine;
 
-namespace ProjectStavitski.Units
+namespace Units
 {
     public class Unit : MonoBehaviour, IDamageable
     {
